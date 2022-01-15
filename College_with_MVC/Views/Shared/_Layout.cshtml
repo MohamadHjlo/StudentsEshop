@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="rtl" style="height: 100%;width: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Font.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body style="height: 100%;width: 100%;font-family: 'Sans'">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow ">
+            <div class="container">
+                @Html.ActionLink("آزمون صفحات وب", "Index", "", new { @class = "navbar-brand" })
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            @Html.ActionLink("نام و نام خانوادگی", "Index", "", new { @class = "nav-link text-dark" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="row" style="height: 100%;width: 100%;">
+        <aside id="sidebar" class="col-2">
+            <ul class="list-unstyled-rtl pr-4 ">
+
+                @if (Session["Admin"] != null)
+                {
+                    <li>
+                        @Html.ActionLink("صفحه اصلی", "Index", "Home", "", new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("لیست کاربران", "Index", "Admin", "", new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("لیست محصولات", "Products", "Admin", "", new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("لیست فاکتور ها", "Orders", "Admin", "", new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("جستجو برای ادمین", "SearchPage", "Admin", "", new { @class = "" })
+                    </li>
+                }
+                @if (Session["Admin"] == null && Session["User"] != null)
+                {
+                    <li>
+                        @Html.ActionLink("ورود با عنوان ادمین", "AdminLogin", "Home", "", new { @class = "" })
+                    </li>
+                }
+                @if (Session["Admin"] != null && Session["User"] == null)
+                {
+                    <li>
+                        @Html.ActionLink("ورود با عنوان کاربر", "UserLogin", "Home", "", new { @class = "" })
+                    </li>
+                }
+                @if (Session["User"] != null)
+                {
+                    <li>
+                        @Html.ActionLink("صفحه اصلی", "Index", "Home", "", new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("جستجو برای کاربر", "SearchPage", "Home", "", new { @class = "" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("سبد خرید من", "ShowUserOrders", "Home", "", new { @class = "" })
+                    </li>
+
+                }
+            </ul>
+        </aside>
+        <div class="col-10 " style=" text-align: -webkit-center;">
+            <main role="main" class="pb-3 mt-4 container">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿@model College_with_MVC.Models.AddEditOrderViewModel
+@{
+    ViewBag.Title = "فرم ثبت ریز فاکتور جدید";
+}
+
+
+<section class="basic-elements">
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title mb-0">اطلاعات فاکتور جدید را وارد نمایید</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <form method="post" class="form">
+                            <div class="form-body">
+                                <div class="mb-3">
+                                    @if (ViewData["NotFoundSuchUser"] != null)
+                                    {
+                                        <span class="alert alert-danger ">@ViewData["NotFoundSuchUser"]</span>
+                                    }
+                                    else if (ViewData["NotFoundSuchProduct"] != null)
+                                    {
+                                        <span class="alert alert-danger ">@ViewData["NotFoundSuchProduct"]</span>
+                                    }
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.UserId)
+                                            @Html.TextBoxFor(m => m.UserId, new { Class = "form-control", Type = "Text" , Readonly= "readonly",value=Model.UserId})
+                                            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.ProductId)
+                                            @Html.TextBoxFor(m => m.ProductId, new { Class = "form-control", Type = "Text" })
+                                            @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.Count)
+                                            @Html.TextBoxFor(m => m.Count, new { Class = "form-control", Type = "Number" })
+                                            @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <br />
+                                            <input type="hidden" value="@Model.OrderID" name="OrderID"/>
+                                            <button type="submit" class="btn btn-cyan col-md-12"> افزودن ریز فاکتور </button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

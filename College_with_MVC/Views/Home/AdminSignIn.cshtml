@@ -1,0 +1,28 @@
+﻿@model College_with_MVC.Models.IndexViewModel
+@{
+    ViewData["Title"] = "Admin SignIn";
+}
+
+<div class="text-right  col-10 jumbotron box-signInLogin">
+    <h2 class="text-highweight">ثبت نام ادمین </h2>
+    <form method="post">
+        @Html.ActionLink("ورود کاربر عادی", "UserLogin", "", new { @class = "nav-link text-dark alert alert-indigo text-muted fontface", @style = "float: left" })
+
+        <div class="">
+            <h5 class="fontface text-danger">@ViewData["ValidateAdminError"]</h5>
+            <div class="form-group">
+                @Html.LabelFor(u => u.UserName)
+                @Html.TextBoxFor(u => u.UserName, new { Class = "form-control", Type = "Text" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(u => u.Password, new { Class = "inputAddress" })
+                @Html.TextBoxFor(u => u.Password, new { Class = "form-control", Type = "Text" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">ثبت نام</button>
+        @Html.ActionLink("حساب دارید؟ ورود", "AdminLogin", "Home", new { @class = "nav-link text-dark alert alert-success text-muted fontface", @style = "float: left" })
+
+    </form>
+</div>

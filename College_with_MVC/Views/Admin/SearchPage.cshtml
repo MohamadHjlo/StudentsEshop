@@ -1,0 +1,131 @@
+﻿@model College_with_MVC.Models.UserSearchViewModel
+@{
+    ViewBag.Title = "SearchPage";
+}
+
+<div class="col-md-12">
+    @using (Html.BeginForm("SearchPage", "Admin", FormMethod.Get, new { @class = "col-xl-5 col-lg-6 col-md-12 mb-5" }))
+    {
+        <div class="mb-4 text-justify">جستجو در فاکتور ها و ریز فاکتور های مربوط</div>
+        <fieldset class="form-group">
+            <div class="row">
+                <input type="number" class="form-control col-8 ml-2" name="ordersearchKey" value="">
+                <input class="btn btn-cyan col-3" type="submit" name="submit" value="جست وجو" />
+            </div>
+        </fieldset>
+    }
+</div>
+<div class="col-md-12">
+    @using (Html.BeginForm("SearchPage", "Admin", FormMethod.Get, new { @class = "col-xl-5 col-lg-6 col-md-12 " }))
+    {
+        <div class="mb-3 text-justify">جستجو در محصول ها و ریز فاکتور های مربوط</div>
+        <fieldset class="form-group">
+            <div class="row">
+                <input type="text" class="form-control col-8 ml-2" name="productsearchkey" value="">
+                <input class="btn btn-cyan col-3" type="submit" name="submit" value="جست وجو" />
+            </div>
+        </fieldset>
+    }
+</div>
+<div class="text-center">
+    <h1 class="display-4 " style="word-spacing: -2px;">صفحه جست و جو</h1>
+    <hr />
+
+
+    @if (Model.Products != null)
+    {
+        <h1>نتایج در جستجوی محصولات</h1>
+        foreach (var product in Model.Products)
+        {
+            <table class="table table-bordered table-responsive-sm table-hover">
+                <thead class="thead-custom">
+                    <tr class="text-center">
+                        <th>تصویر</th>
+                        <th>نام محصول</th>
+                        <th>قیمت</th>
+                        <th>دستورات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="/Images/@(product.ProductID).jpg" style="width: 150px; height: 150px; object-fit: contain; padding: 3px" alt="Responsive image" />
+                        </td>
+
+                        <td style=" vertical-align: middle;">@product.Name</td>
+                        <td style=" vertical-align: middle;">@product.Price.ToString("C0")</td>
+                        <td style=" vertical-align: middle;">
+                            @Html.ActionLink("مشاهده", "Details", "Home", new { productId = product.ProductID }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("حذف", "DeleteProduct", "Admin", new { productId = product.ProductID }, new { @class = "btn btn--danger" })
+                            @Html.ActionLink("ویرایش", "EditProduct", "Admin", new { productId = product.ProductID }, new { @class = "btn btn-info" })
+
+                        </td>
+                    </tr>
+                    <tr class="thead-custom2" style="background-color: #9ef2ff !important">
+                        <th>شماره ریز فاکتور مربوط</th>
+                        <th>تعداد</th>
+                        <th colspan="1">قیمت تمام شده</th>
+                        <th colspan="1">وضعیت</th>
+                    </tr>
+
+
+                    @foreach (var orderdetail in product.OrderDetails)
+                    {
+                        <tr>
+                            <td style="vertical-align: middle;">@orderdetail.DetailID</td>
+                            <td style="vertical-align: middle;">@orderdetail.Count</td>
+                            <td colspan="1" style="vertical-align: middle;">@orderdetail.Price.ToString("C0")</td>
+                            <td colspan="1" style="vertical-align: middle;">@(orderdetail.Order.IsFinaly==true?"نهایی شده":"در انتظار")</td>
+                        </tr>
+                    }
+            </table>
+        }
+    }
+
+    @if (Model.Orders != null)
+    {
+        <h1>نتایج در جستجوی فاکتور ها</h1>
+        foreach (var order in Model.Orders)
+        {
+            <table class="table table-bordered table-responsive-sm table-hover">
+                <thead class="thead-custom2">
+                    <tr class="text-center">
+                        <th>شناسه</th>
+                        <th>تاریخ درج</th>
+                        <th>قیمت با احتساب تمام ریز فاکتور های مربوط</th>
+                        <th>دستورات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style=" vertical-align: middle;">@order.OrderID</td>
+                        <td style=" vertical-align: middle;">@order.CreatDate</td>
+                        <td style=" vertical-align: middle;">@order.OrderDetails.Sum(d => d.Count * d.Price).ToString("C0")</td>
+                        <td>
+                            @Html.ActionLink("حذف", "DeleteOrder", "Admin", new { orderId = order.OrderID }, new { @class = "btn btn--danger" })
+                        </td>
+                    </tr>
+                    <tr class="thead-custom" style="background-color: #9ef2ff !important">
+                        <th>شماره ریز فاکتور مربوط</th>
+                        <th>تعداد</th>
+                        <th>قیمت تمام شده</th>
+                        <th>دستورات</th>
+                    </tr>
+                    @foreach (var orderdetail in order.OrderDetails)
+                    {
+                        <tr>
+                            <td style="vertical-align: middle;">@orderdetail.DetailID</td>
+                            <td style="vertical-align: middle;">@orderdetail.Count</td>
+                            <td style="vertical-align: middle;">@orderdetail.Price.ToString("C0")</td>
+                            <td>
+                                @Html.ActionLink("حذف", "DeleteDetail", "Admin", new { detailId = orderdetail.DetailID }, new { @class = "btn btn--danger" })
+                                @Html.ActionLink("تغییر", "EditDetail", "Admin", new { detailId = orderdetail.DetailID }, new { @class = "btn btn-info" })
+                            </td>
+                        </tr>
+                    }
+            </table>
+        }
+    }
+</div>
+
+

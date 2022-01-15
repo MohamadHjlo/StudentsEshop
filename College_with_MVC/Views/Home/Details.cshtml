@@ -1,0 +1,24 @@
+﻿@model Product
+
+
+<link href="~/css/Font.css" rel="stylesheet" />
+@{
+    ViewData["Title"] = "محصول" + Model.Name;
+}
+
+<div>
+    <h1 class="display-5">@Model.Name</h1>
+    <hr />
+    <img src="@($"/images/{Model.ProductID}.jpg")" alt="@Model.Name" class="img-thumbnail" style="width: 500px;height: 100%;object-fit: contain;" />
+    <p class="py-5 ">@Model.Describtion</p>
+    <p> قیمت  : @Model.Price</p>
+    <dl>
+        <dt><a>@Model.Name</a></dt>
+    </dl>
+   
+    <div>
+        @Html.ActionLink("افزودن به فاکتور های من", "AddToUserOrders", "Home", new { productId=Model.ProductID}, new { @class = "" })
+    </div>
+
+
+</div>

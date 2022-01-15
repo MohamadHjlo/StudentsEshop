@@ -1,0 +1,48 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "محصولات";
+}
+
+<div class="text-center">
+    <div class="text-center">
+        <h2 class="mt-5 mb-5 ">محصولات </h2>
+        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-12 box-shadow pt-5 box-container mt-5 pb-3">
+            @Html.ActionLink("افزودن محصول جدید", "AddProduct", "Admin", "Home", new { @class = " btn btn-darkaqua mb-3" })
+            @if (ViewData["SuccessDelete"] != null)
+            {
+                <span class="alert alert-success float-left">@ViewData["SuccessDelete"]</span>
+            }
+            <table class="table table-bordered table-responsive-sm table-hover">
+                <thead class="thead-custom">
+                    <tr class="text-center">
+                        <th>تصویر</th>
+                        <th height="20" class="xl636160" align="left" width="20" style="height: 15.0pt; width: 15pt">
+                            شناسه
+                        </th>
+                        <th>نام محصول</th>
+                        <th>قیمت</th>
+                        <th>دستورات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="/Images/@(product.ProductID).jpg" style="width: 150px; height: 150px; object-fit: contain; padding: 3px" alt="Responsive image" />
+                            </td>
+                            <td style=" vertical-align: middle;">@product.ProductID</td>
+                            <td style=" vertical-align: middle;">@product.Name</td>
+                            <td style=" vertical-align: middle;">@product.Price.ToString("C0")</td>
+                            <td style=" vertical-align: middle;">
+                                @Html.ActionLink("حذف", "DeleteProduct", "Admin", new { productId = product.ProductID }, new { @class = "btn btn--danger" })
+
+                                @Html.ActionLink("ویرایش", "EditProduct", "Admin", new { productId = product.ProductID }, new { @class = "btn btn-info" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

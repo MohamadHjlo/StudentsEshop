@@ -1,0 +1,46 @@
+﻿@model List<User>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    <div class="text-center">
+        <h2 class="mt-5 mb-5 text-title-experts">کاربران </h2>
+        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-12 box-shadow pt-5 box-container mt-5 pb-3">
+            @Html.ActionLink("افزودن کاربر جدید", "AddUser", "Admin", "", new { @class = " btn btn-darkaqua mb-3" })
+
+            @if(ViewData["SuccessDelete"]!=null)
+            {
+                <span class="alert alert-success float-left">@ViewData["SuccessDelete"]</span>
+            }
+            <table class="table table-bordered table-responsive-sm table-hover">
+                <thead class="thead-custom">
+                <tr class="text-center">
+                    <th height="20" class="xl636160" align="left" width="20" style="height: 15.0pt; width: 15pt">
+                        شناسه
+                    </th>
+                    <th>نام کاربری</th>
+                    <th>رمز عبور</th>
+                    <th> دستورات</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach(var user in Model)
+                {
+                    <tr>
+                        <td>@user.ID</td>
+                        <td>@user.Username</td>
+                        <td>@user.Password</td>
+                        <td>
+                            @Html.ActionLink("حذف","DeleteUser","Admin",new {userId=user.ID},new {@class="btn btn--danger"})
+
+                            @Html.ActionLink("ویرایش","EditUser","Admin",new {userId=user.ID},new {@class="btn btn-info"})
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

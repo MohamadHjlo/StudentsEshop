@@ -1,0 +1,165 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #6e00ff;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+.alert-indigo {
+    background-color: #1000ff45;
+    border-color: #bac5ff;
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+#sidebar {
+    box-shadow: -8px 8px 20px #a9a9a9;
+    font-family: "Sans";
+    background: linear-gradient( 45deg, #15a576a8,#34cdbf6b, #4fe9a9c2);
+    direction: rtl !important;
+    text-align: right;
+}
+
+@media (max-width: 576px) {
+    .list-unstyled-rtl {
+        position: inherit;
+        font-family: "Sans";
+        padding-right: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+}
+
+.list-unstyled-rtl {
+    position: fixed !important;
+    font-family: "Sans";
+    padding-right: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+    .list-unstyled-rtl li {
+        -webkit-text-stroke-width: medium;
+        letter-spacing: 1.1px;
+        font-family: "Sans";
+        margin: 37px 0 20px;
+        font-weight: 700;
+        font-size: 18px;
+        text-shadow: 0 0 1px black;
+    }
+
+.btn-darkaqua {
+    color: #fff;
+    background-color: #099d7b;
+    border-color: #098f70
+}
+
+    .btn-darkaqua:hover {
+        box-shadow: 0 0 9px #0a724b;
+        color: #fff;
+        background-color: #138575;
+        border-color: #16917f
+    }
+
+.btn-magenta {
+    color: #fff;
+    background-color: #ff1480;
+    border-color: #e31085
+}
+
+    .btn-magenta:hover {
+        box-shadow: 0 0 11px 0 #ff6b6b;
+        color: #fff;
+        background-color: #df055f;
+        border-color: #df055f
+    }
+
+.btn--danger {
+    color: #fff;
+    background-color: #fd1b4f;
+    border-color: #ff164c
+}
+
+    .btn--danger:hover {
+        box-shadow: 0 0 11px 0 #ff6b6b;
+        color: #fff;
+        background-color: #cd0835;
+        border-color: #bf0731
+    }
+
+.btn-cyan {
+    background-color: #65f7db;
+    border-color: #00fbcc
+}
+
+    .btn-cyan:hover {
+        box-shadow: 0 0 11px 0 #08b37b;
+        color: #fff;
+        background-color: #0bd7a8;
+        border-color: #05dfc1
+    }

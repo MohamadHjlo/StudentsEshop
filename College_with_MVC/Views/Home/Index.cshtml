@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Product>
+<link href="~/css/Font.css" rel="stylesheet" />
+
+@{
+    ViewData["Title"] = "فروشگاه من";
+}
+
+<div class="text-center" >
+    <h1 class="display-4 " style="word-spacing: -2px;">لیست محصولات</h1>
+    <hr />
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4" >
+                <div class="card" style="margin-bottom: 2rem">
+                    <img src="/Images/@{@item.ProductID}.jpg" height="160" width="160" class=" card-img-top img-responsive img-thumbnail" style="height: 12rem; object-fit: contain;" alt=""/>
+                    <hr/>
+                    <div class="card-body" >
+                        <h5 class="card-title">@item.Name</h5>
+                        @Html.ActionLink("جزئیات بیشتر","Details","Home",new {productId=item.ProductID},new {@class=""})
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

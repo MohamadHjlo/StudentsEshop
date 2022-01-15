@@ -1,0 +1,31 @@
+﻿@model College_with_MVC.Models.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-right  col-10 jumbotron box-signInLogin">
+    <h2 class="text-highweight">ورود کاربر</h2>
+    <form method="post">
+        @Html.ActionLink("بخش مدیر","AdminSignIn","",new {@class="nav-link text-dark alert alert-indigo text-muted fontface",@style="float: left"})
+        @if(Session["Admin"]!=null)
+        {
+            <div class="nav-link text-dark  text-muted fontface"><span class="alert alert-indigo" style="font-size: 13px;">برای این که بتوانید خرید انجام دهید نیاز است تا یک بار هم از طریق این پنل حساب بسازید</span></div>
+        }
+        <div class="">
+            <h5 class="fontface text-danger">@ViewData["ValidateError"]</h5>
+            <div class="form-group">
+                @Html.LabelFor(u=>u.UserName)
+                @Html.TextBoxFor(u=>u.UserName,new {Class="form-control",Type="Text"})
+                @Html.ValidationMessageFor(model=>model.UserName,"",new {@class="text-danger"})
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(u=>u.Password,new {Class="inputAddress"})
+                @Html.TextBoxFor(u=>u.Password,new {Class="form-control",Type="Text"})
+                @Html.ValidationMessageFor(model=>model.Password,"",new {@class="text-danger"})
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">ورود</button>
+        @Html.ActionLink("حساب ندارید؟ ثبت نام","UserSignIn","",new {@class="nav-link text-dark alert alert-danger text-muted fontface",@style="float: left"})
+
+    </form>
+</div>

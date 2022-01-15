@@ -1,0 +1,46 @@
+﻿@model List<Order>
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="text-center">
+    <div class="text-center">
+        <h2 class="mt-5 mb-5 ">فاکتور ها </h2>
+        <div class="col-md-12 col-lg-12 col-xl-12 col-sm-12 col-12 box-shadow pt-5 box-container mt-5 pb-3">
+            @Html.ActionLink("افزودن فاکتور جدید", "AddOrder", "Admin", "", new { @class = " btn btn-darkaqua mb-3" })
+            @if (ViewData["SuccessMessage"] != null)
+            {
+                <span class="alert alert-success float-left">@ViewData["SuccessMessage"]</span>
+            }
+
+            <table class="table table-bordered table-responsive-sm table-hover">
+                <thead class="thead-custom">
+                    <tr class="text-center">
+                        <th height="20" class="xl636160" align="left" width="20" style="height: 15.0pt; width: 15pt">
+                            شناسه
+                        </th>
+                        <th>نام کاربری مربوط</th>
+                        <th>تاریخ ثبت</th>
+                        <th>وضعیت</th>
+                        <th>دستورات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.OrderID</td>
+                            <td>@order.User.Username</td>
+                            <td>@order.CreatDate</td>
+                            <td>@(order.IsFinaly==true?"نهایی شده":"نهایی نشده")</td>
+                            <td>
+                                @Html.ActionLink("حذف", "DeleteOrder", "Admin", new { orderId = order.OrderID }, new { @class = "btn btn--danger" })
+                                @Html.ActionLink("ریز فاکتور", "ViewOrderDetails", "Admin", new { orderId = order.OrderID }, new { @class = "btn btn-info" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

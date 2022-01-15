@@ -1,0 +1,53 @@
+﻿@model College_with_MVC.Models.AddEditUserViewModel
+@{
+    ViewBag.Title = "فرم ثبت نام کاربر جدید";
+}
+
+
+<section class="basic-elements">
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title mb-0">اطلاعات محصول جدید را وارد نمایید</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <form method="post" class="form" >
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.UserName)
+                                            @Html.TextBoxFor(m => m.UserName, new { Class = "form-control", Type = "Text" })
+                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.Password)
+                                            @Html.TextBoxFor(m => m.Password, new { Class = "form-control", Type = "Text" })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <br />
+                                            <button type="submit" class="btn btn-cyan col-md-12"> افزودن کاربر  </button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

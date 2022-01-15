@@ -1,0 +1,69 @@
+﻿@model College_with_MVC.Models.AddEditProductVieModel
+@{
+    ViewBag.Title = "ویرایش محصول";
+}
+
+<section class="basic-elements">
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title mb-0">اطلاعات  جدید را وارد نمایید</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="px-3">
+                        <form method="post" class="form" enctype="multipart/form-data">
+                            <div class="form-body">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.ProductName)
+                                            @Html.TextBoxFor(m => m.ProductName, new { Class = "form-control", Type = "Text" })
+                                            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.Price)
+                                            @Html.TextBoxFor(m => m.Price, new { Class = "form-control", Type = "Number" })
+                                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.File)
+                                            <img src="/Images/@(Model.Id).jpg" style="width: 150px; height: 150px; object-fit: contain; padding: 3px" alt="Responsive image" />
+                                            <input type="file" name="File" />
+                                            <input type="hidden" name="Id" value="@Model.Id" />
+                                            @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            @Html.LabelFor(m => m.Describtion)
+                                            @Html.TextAreaFor(m => m.Describtion, new { Class = "form-control ", Type = "Text", @style = "height: 80px" })
+                                            @Html.ValidationMessageFor(model => model.Describtion, "", new { @class = "text-danger" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <br />
+                                            <button type="submit" class="btn btn-darkaqua col-md-12"> افزودن محصول  </button>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

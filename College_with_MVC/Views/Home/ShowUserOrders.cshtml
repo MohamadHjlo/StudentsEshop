@@ -1,0 +1,49 @@
+﻿@model College_with_MVC.Models.UserOrderViewModel
+
+<link href="~/css/Font.css" rel="stylesheet" />
+
+@{
+    ViewData["Title"] = "سبد خرید";
+}
+@if (ViewData["Message"] != null)
+{
+    <span class="alert alert-success">@ViewData["Message"]</span>
+}
+@if (Model?.Order != null)
+{
+    <table class="table table-striped shadow">
+        <thead class="thead-dark">
+            <tr>
+                <th>کالا</th>
+                <th>تعداد</th>
+                <th>قیمت</th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Details)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Count</td>
+                    <td>@((item.Count * item.Price).ToString("C0"))</td>
+                    <td>
+                        <label>
+                            @Html.ActionLink("حذف", "RemoveItem", "Home", new { detailId = item.DetailID }, new { @class = "btn btn-magenta" })
+                        </label>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h5> جمع کل : @Model.Details.Sum(s => s.Count * s.Price).ToString("C0") </h5>
+    <p>
+        @Html.ActionLink("ثبت فاکتور ", "SubmitAsFinalyBuy", "Home", new { orderId = Model.Order.OrderID }, new { @class = "btn  btn-darkaqua" })
+    </p>
+
+}
+else
+{
+    <div class="alert alert-danger mt-5">فاکتوری وجود ندارد</div>
+}
